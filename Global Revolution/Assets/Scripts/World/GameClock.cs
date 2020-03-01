@@ -7,9 +7,6 @@ namespace Assets.Scripts.World
     public class GameClock : MonoBehaviour
     {
         [SerializeField]
-        private string _gameStartDate;
-
-        [SerializeField]
         private float _minuteLengthInSeconds;
 
         [SerializeField]
@@ -22,8 +19,12 @@ namespace Assets.Scripts.World
         public OnMinutePassed OnMinutePassed { get; set; }
         private void Start()
         {
-            ClockValue = DateTime.Parse(_gameStartDate);
             _elapsedSeconds = 0;
+        }
+
+        public void SetStartupDate(string startupDate)
+        {
+            ClockValue = DateTime.Parse(startupDate);
         }
 
         private void FixedUpdate()

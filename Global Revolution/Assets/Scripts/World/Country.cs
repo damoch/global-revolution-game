@@ -13,17 +13,50 @@ namespace Assets.Scripts.World
         [SerializeField]
         private City[] _cities;
 
-        private City _capital;
-        private void Start()
-        {
-            _teritoryRenderer = GetComponent<SpriteRenderer>();
+        private GameController _gameController;
 
-            InjectToCities();
+        public float EconomicAxis
+        {
+            get
+            {
+                var result = 0f;
+                var weightsSum = 0f;
+
+                foreach (var city in _cities)
+                {
+                    result += city.IsCapitalCity ? city.CityGovernment.EconomicAxis * _gameController.Rules.CapitalCityInfluence : 
+                    city.CityGovernment.EconomicAxis * _gameController.Rules.NormalCityInfluence;
+                    
+                    weightsSum += city.IsCapitalCity ? _gameController.Rules.CapitalCityInfluence : _gameController.Rules.NormalCityInfluence;
+                }
+
+                return result / weightsSum;
+            }
         }
 
-        private void InjectToCities()
+        public float GovernanceAxis
         {
-            
+            get
+            {
+                var result = 0f;
+                var weightsSum = 0f;
+
+                foreach (var city in _cities)
+                {
+                    result += city.IsCapitalCity ? city.CityGovernment.GovernanceAxis * _gameController.Rules.CapitalCityInfluence :
+                    city.CityGovernment.GovernanceAxis * _gameController.Rules.NormalCityInfluence;
+
+                    weightsSum += city.IsCapitalCity ? _gameController.Rules.CapitalCityInfluence : _gameController.Rules.NormalCityInfluence;
+                }
+
+                return result / weightsSum;
+            }
+        }
+
+        private City _capital;
+
+        private void InjectToCities()
+        {            
             foreach (var city in _cities)
             {
                 if(city.IsCapitalCity)
@@ -32,6 +65,14 @@ namespace Assets.Scripts.World
                 }
                 city.InjectCountry(this);
             }
+        }
+
+        public void InjectGameCotroller(GameController gameController)
+        {
+            _gameController = gameController;            
+            _teritoryRenderer = GetComponent<SpriteRenderer>();
+
+            InjectToCities();
         }
     }
 }
