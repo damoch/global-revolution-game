@@ -47,5 +47,10 @@ namespace Assets.Scripts.World
             ClockValue = ClockValue.AddMinutes(1);
             OnMinutePassed?.Invoke(ClockValue);
         }
+
+        public void SetClockRunning(bool isRunning)
+        {
+            _isClockOn = isRunning;
+        }
     }
 }

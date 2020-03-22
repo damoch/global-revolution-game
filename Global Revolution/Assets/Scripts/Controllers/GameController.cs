@@ -18,8 +18,12 @@ namespace Assets.Scripts
         [SerializeField]
         private Country[] _countries;
 
+        [SerializeField]
+        private BaseState _baseState;
+        
         private Rules _rules;
         private Scenario _scenario;
+        private GamePlayState _gamePlayState;
         public Rules Rules { get => _rules; set => _rules = value; }
 
         private void Start()
@@ -27,6 +31,7 @@ namespace Assets.Scripts
             Debug.Log(GetAboutString());
             _rules = GetComponent<Rules>();
             _scenario = GetComponent<Scenario>();
+            _gamePlayState = GamePlayState.WorldMap;
 
             SetUpScenario();
             _worldState.GameClock.OnMinutePassed += _uiController.UpdateClockValue;
@@ -59,6 +64,21 @@ namespace Assets.Scripts
             sb.Append(Application.buildGUID);
 
             return sb.ToString();
+        }
+
+        public void ChangeGamePlayState()
+        {
+            if(_gamePlayState == GamePlayState.WorldMap)
+            {
+                _gamePlayState = GamePlayState.BaseView;
+                _worldState.GameClock.SetClockRunning(false);
+            }
+            else if(_gamePlayState == GamePlayState.BaseView)
+            {
+                _gamePlayState = GamePlayState.WorldMap;
+                _worldState.GameClock.SetClockRunning(true);
+            }
+            _uiController.ChangeView(_gamePlayState);
         }
     }
 }
