@@ -2,6 +2,7 @@
 using UnityEngine;
 using UnityEngine.UI;
 using Assets.Scripts.State;
+using Assets.Scripts.Controllers;
 
 namespace Assets.Scripts.UI
 {
@@ -22,9 +23,15 @@ namespace Assets.Scripts.UI
         [SerializeField]
         private Text _changeSteteButtonText;
 
+        [SerializeField]
+        private Text _moneyText;
+
+        private GameController _gameController;
+
         public void UpdateClockValue(DateTime currentDate)
         {
             _clockText.text = currentDate.ToString();
+            _moneyText.text = _gameController.BaseController.BaseState.Money.ToString();
         }
 
         public void ChangeView(GamePlayState currentState)
@@ -37,6 +44,11 @@ namespace Assets.Scripts.UI
             {
                 _camera.transform.position = _cameraPositionBase;
             }
+        }
+
+        public void InjectController(GameController gameController)
+        {
+            _gameController = gameController;
         }
     }
 }

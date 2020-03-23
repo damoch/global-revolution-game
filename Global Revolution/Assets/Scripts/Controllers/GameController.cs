@@ -5,7 +5,7 @@ using System.Text;
 using UnityEngine;
 using Assets.Scripts.Data;
 
-namespace Assets.Scripts
+namespace Assets.Scripts.Controllers
 {
     public class GameController : MonoBehaviour
     {
@@ -19,12 +19,13 @@ namespace Assets.Scripts
         private Country[] _countries;
 
         [SerializeField]
-        private BaseState _baseState;
+        private BaseController _baseController;
         
         private Rules _rules;
         private Scenario _scenario;
         private GamePlayState _gamePlayState;
         public Rules Rules { get => _rules; set => _rules = value; }
+        public BaseController BaseController { get => _baseController; set => _baseController = value; }
 
         private void Start()
         {
@@ -35,8 +36,9 @@ namespace Assets.Scripts
 
             SetUpScenario();
             _worldState.GameClock.OnMinutePassed += _uiController.UpdateClockValue;
+            _worldState.GameClock.OnMinutePassed += _baseController.UpdateBaseState;
 
-            InjectToCountries();
+            InjectToOthers();
         }
 
         private void SetUpScenario()
@@ -44,8 +46,11 @@ namespace Assets.Scripts
             _worldState.GameClock.SetStartupDate(_scenario.ScenarioStartDate);
         }
 
-        private void InjectToCountries()
+        private void InjectToOthers()
         {
+            _baseController.InjectController(this);
+            _uiController.InjectController(this);
+            
             foreach (var country in _countries)
             {
                 country.InjectGameCotroller(this);
