@@ -39,6 +39,10 @@ namespace Assets.Scripts.Controllers
             _worldState.GameClock.OnMinutePassed += _baseController.UpdateBaseState;
 
             InjectToOthers();
+
+
+            //test
+            _baseController.StartBuilding(_baseController.BaseState.PlacesForBuildings[0], _rules.AvailableBaseBuildings[0]);
         }
 
         private void SetUpScenario()

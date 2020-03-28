@@ -1269,6 +1269,11 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   _money: 100
+  _placesForBuildings:
+  - {fileID: 688372087}
+  - {fileID: 632961786}
+  - {fileID: 939749143}
+  - {fileID: 1727248925}
 --- !u!114 &1242659062
 MonoBehaviour:
   m_ObjectHideFlags: 0

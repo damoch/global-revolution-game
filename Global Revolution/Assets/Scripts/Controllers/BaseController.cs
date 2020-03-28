@@ -1,5 +1,6 @@
 using System;
 using Assets.Scripts.State;
+using Assets.Scripts.World.Base;
 using UnityEngine;
 
 namespace Assets.Scripts.Controllers
@@ -15,12 +16,23 @@ namespace Assets.Scripts.Controllers
 
         public void UpdateBaseState(DateTime currentDate)
         {
-            // _clockText.text = currentDate.ToString();
+            foreach(var buildingPlace in _baseState.PlacesForBuildings)
+            {
+                buildingPlace.UpdateBuildingPlace(currentDate);
+            }
         }
 
         public void InjectController(GameController contr)
         {
             _gameController = contr;
+        }
+
+        internal void StartBuilding(PlaceForBuilding placeForBuilding, Building building)
+        {
+            var bldg = Instantiate(building, placeForBuilding.transform.position, placeForBuilding.transform.rotation);
+            bldg.gameObject.SetActive(false);
+            _baseState.Money -= building.ConstructionCost;
+            placeForBuilding.StartConstruction(bldg);
         }
     }
 }

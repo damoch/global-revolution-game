@@ -95,3 +95,4 @@ MonoBehaviour:
   _constructionCost: 100
   _hourlyMoneyBalance: 0
   _energyBalance: 0
+  _buildTimeInMinutes: 10

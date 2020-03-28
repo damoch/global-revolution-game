@@ -1,3 +1,4 @@
+using Assets.Scripts.World.Base;
 using UnityEngine;
 
 namespace Assets.Scripts.State
@@ -7,7 +8,10 @@ namespace Assets.Scripts.State
         [SerializeField]
         private int _money;
 
+        [SerializeField]
+        private PlaceForBuilding[] _placesForBuildings;
         public int Money { get => _money; set => _money = value; }
+        public PlaceForBuilding[] PlacesForBuildings { get => _placesForBuildings; set => _placesForBuildings = value; }
     }
 
 }

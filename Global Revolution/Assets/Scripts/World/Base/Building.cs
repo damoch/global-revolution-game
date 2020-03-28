@@ -12,5 +12,11 @@ namespace Assets.Scripts.World.Base
 
         [SerializeField]
         private int _energyBalance;
+        
+        [SerializeField]
+        private int _buildTimeInMinutes;
+
+        public int BuildTimeInMinutes { get => _buildTimeInMinutes; }
+        public int ConstructionCost { get => _constructionCost; }
     }
 }
