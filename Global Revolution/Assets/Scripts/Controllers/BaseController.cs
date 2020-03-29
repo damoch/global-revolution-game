@@ -34,5 +34,10 @@ namespace Assets.Scripts.Controllers
             _baseState.Money -= building.ConstructionCost;
             placeForBuilding.StartConstruction(bldg);
         }
+
+        public bool CanStartConstruction(PlaceForBuilding placeForBuilding, Building building)
+        {
+            return building.ConstructionCost > _baseState.Money && placeForBuilding == null;
+        }
     }
 }

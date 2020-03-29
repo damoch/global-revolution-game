@@ -26,6 +26,9 @@ namespace Assets.Scripts.UI
         [SerializeField]
         private Text _moneyText;
 
+        [SerializeField]
+        private BaseControlPanelController _baseControlPanel;
+
         private GameController _gameController;
 
         public void UpdateClockValue(DateTime currentDate)
@@ -39,10 +42,13 @@ namespace Assets.Scripts.UI
             if(currentState == GamePlayState.WorldMap)
             {
                 _camera.transform.position = _cameraPositionWorld;
+                _baseControlPanel.gameObject.SetActive(false);
             }
             else if(currentState == GamePlayState.BaseView)
             {
                 _camera.transform.position = _cameraPositionBase;
+                _baseControlPanel.gameObject.SetActive(true);
+                _baseControlPanel.ActivatePanel(BasePanelState.Main);
             }
         }
 

@@ -11,6 +11,7 @@ namespace Assets.Scripts.World.Base
         private bool _isBuilding;
 
         public bool IsBuilding { get => _isBuilding; }
+        public Building Building { get => _building; }
 
         private int _elapsedMinutes;
 
