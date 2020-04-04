@@ -2,6 +2,6 @@ namespace Assets.Scripts.UI
 {
     public enum BasePanelState
     {
-        Main, Building
+        Main, Building, SelectPlaceForBuilding
     }
 }

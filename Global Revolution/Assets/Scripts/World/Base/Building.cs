@@ -16,7 +16,11 @@ namespace Assets.Scripts.World.Base
         [SerializeField]
         private int _buildTimeInMinutes;
 
+        [SerializeField]
+        private string _inGameName;
+
         public int BuildTimeInMinutes { get => _buildTimeInMinutes; }
         public int ConstructionCost { get => _constructionCost; }
+        public string InGameName { get => _inGameName; }
     }
 }

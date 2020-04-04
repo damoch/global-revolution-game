@@ -34,6 +34,11 @@ namespace Assets.Scripts.UI
         public void UpdateClockValue(DateTime currentDate)
         {
             _clockText.text = currentDate.ToString();
+            UpdateBaseData();
+        }
+
+        public void UpdateBaseData()
+        {
             _moneyText.text = _gameController.BaseController.BaseState.Money.ToString();
         }
 
@@ -55,6 +60,9 @@ namespace Assets.Scripts.UI
         public void InjectController(GameController gameController)
         {
             _gameController = gameController;
+
+            _baseControlPanel.InjectAvailableBuildings(gameController.Rules.AvailableBaseBuildings, 
+            _gameController.BaseController, this);
         }
     }
 }

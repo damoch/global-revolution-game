@@ -45,6 +45,7 @@ namespace Assets.Scripts.Controllers
         private void SetUpScenario()
         {
             _worldState.GameClock.SetStartupDate(_scenario.ScenarioStartDate);
+            _baseController.BaseState.Money = _scenario.StartingMoney;
         }
 
         private void InjectToOthers()
