@@ -32,14 +32,15 @@ namespace Assets.Scripts.Controllers
             Debug.Log(GetAboutString());
             _rules = GetComponent<Rules>();
             _scenario = GetComponent<Scenario>();
-            _gamePlayState = GamePlayState.WorldMap;
-            _uiController.ChangeView(_gamePlayState);
 
             SetUpScenario();
             _worldState.GameClock.OnMinutePassed += _uiController.UpdateClockValue;
             _worldState.GameClock.OnMinutePassed += _baseController.UpdateBaseState;
 
             InjectToOthers();
+            _gamePlayState = GamePlayState.WorldMap;
+            _uiController.ChangeView(_gamePlayState);
+            _uiController.UpdateBaseData();
         }
 
         private void SetUpScenario()

@@ -70,7 +70,6 @@ namespace Assets.Scripts.UI
         }
 
         public void ActivatePanel(BasePanelState state){
-            Debug.Log(_statesToPanels);
             _statesToPanels[_baseControlState].SetActive(false);
             _baseControlState = state;
             _statesToPanels[_baseControlState].SetActive(true);

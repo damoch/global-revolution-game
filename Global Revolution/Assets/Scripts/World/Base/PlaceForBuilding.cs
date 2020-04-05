@@ -8,9 +8,9 @@ namespace Assets.Scripts.World.Base
         [SerializeField]
         private Building _building;
 
-        private bool _isBuilding;
+        private bool _constructionInProgress;
 
-        public bool IsBuilding { get => _isBuilding; }
+        public bool ConstructionInProgress { get => _constructionInProgress; }
         public Building Building { get => _building; }
 
         private int _elapsedMinutes;
@@ -24,10 +24,10 @@ namespace Assets.Scripts.World.Base
 
         public void StartConstruction(Building building)
         {
-            if(_isBuilding || _building != null){
+            if(_constructionInProgress || _building != null){
                 return;
             }
-            _isBuilding = true;
+            _constructionInProgress = true;
             _elapsedMinutes = 0;
             _building = building;
             _building.gameObject.SetActive(false);
@@ -35,12 +35,12 @@ namespace Assets.Scripts.World.Base
 
         public void UpdateBuildingPlace(DateTime currentDate)
         {
-            if(_isBuilding)
+            if(_constructionInProgress)
             {
                 _elapsedMinutes++;
                 if(_elapsedMinutes == _building.BuildTimeInMinutes)
                 {
-                    _isBuilding = false;
+                    _constructionInProgress = false;
                     _building.gameObject.SetActive(true);
                 }
             }

@@ -22,5 +22,6 @@ namespace Assets.Scripts.World.Base
         public int BuildTimeInMinutes { get => _buildTimeInMinutes; }
         public int ConstructionCost { get => _constructionCost; }
         public string InGameName { get => _inGameName; }
+        public int EnergyBalance { get => _energyBalance; }
     }
 }
