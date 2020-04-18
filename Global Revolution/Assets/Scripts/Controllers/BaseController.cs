@@ -25,6 +25,10 @@ namespace Assets.Scripts.Controllers
         public void InjectController(GameController contr)
         {
             _gameController = contr;
+
+            foreach(var bld in _baseState.PlacesForBuildings){
+                bld.LoggingDelegate += _gameController.LogGameEvent;
+            }
         }
 
         internal void StartBuilding(PlaceForBuilding placeForBuilding, Building building)

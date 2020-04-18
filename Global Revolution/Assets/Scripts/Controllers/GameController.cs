@@ -74,6 +74,11 @@ namespace Assets.Scripts.Controllers
             return sb.ToString();
         }
 
+        public void LogGameEvent(string message)
+        {
+            _uiController.WorldPanelController.GameLogController.LogMessage($"[{_worldState.GameClock.ClockValue}] {message}");
+        }
+
         public void ChangeGamePlayState()
         {
             if(_gamePlayState == GamePlayState.WorldMap)

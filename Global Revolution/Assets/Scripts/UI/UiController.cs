@@ -32,8 +32,13 @@ namespace Assets.Scripts.UI
         [SerializeField]
         private BaseControlPanelController _baseControlPanel;
 
+        [SerializeField]
+        private WorldPanelController _worldPanelController;
+
         private GameController _gameController;
         private UiStrings _uiStrings;
+
+        public WorldPanelController WorldPanelController { get => _worldPanelController; }
 
         public void UpdateClockValue(DateTime currentDate)
         {
@@ -53,12 +58,14 @@ namespace Assets.Scripts.UI
             {
                 _camera.transform.position = _cameraPositionWorld;
                 _baseControlPanel.gameObject.SetActive(false);
+                _worldPanelController.gameObject.SetActive(true);
                 _changeSteteButtonText.text = _uiStrings.BaseViewText;
             }
             else if(currentState == GamePlayState.BaseView)
             {
                 _camera.transform.position = _cameraPositionBase;
                 _baseControlPanel.gameObject.SetActive(true);
+                _worldPanelController.gameObject.SetActive(false);
                 _baseControlPanel.ActivatePanel(BasePanelState.Main);
                 _changeSteteButtonText.text = _uiStrings.WorldViewText;
             }

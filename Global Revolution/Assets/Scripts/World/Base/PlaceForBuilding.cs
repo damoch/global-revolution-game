@@ -3,6 +3,7 @@ using UnityEngine;
 
 namespace Assets.Scripts.World.Base
 {
+    public delegate void LogDelegate(string message);
     public class PlaceForBuilding : MonoBehaviour
     {
         [SerializeField]
@@ -11,6 +12,7 @@ namespace Assets.Scripts.World.Base
         private bool _constructionInProgress;
 
         public bool ConstructionInProgress { get => _constructionInProgress; }
+        public LogDelegate LoggingDelegate { get; set; }
         public Building Building { get => _building; }
 
         private int _elapsedMinutes;
@@ -31,6 +33,7 @@ namespace Assets.Scripts.World.Base
             _elapsedMinutes = 0;
             _building = building;
             _building.gameObject.SetActive(false);
+            LoggingDelegate?.Invoke($"Construction started: {building.InGameName}");
         }
 
         public void UpdateBuildingPlace(DateTime currentDate)
@@ -42,6 +45,7 @@ namespace Assets.Scripts.World.Base
                 {
                     _constructionInProgress = false;
                     _building.gameObject.SetActive(true);
+                    LoggingDelegate?.Invoke($"Construction finished: {_building.InGameName}");
                 }
             }
         }
