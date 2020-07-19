@@ -3,9 +3,8 @@ using UnityEngine;
 using System.Collections.Generic;
 using UnityEngine.UI;
 using Assets.Scripts.World.Base;
-using UnityEngine.EventSystems;
-using UnityEngine.Experimental.UIElements;
 using Assets.Scripts.Controllers;
+using UnityEngine.Experimental.UIElements;
 
 namespace Assets.Scripts.UI
 {
@@ -25,6 +24,9 @@ namespace Assets.Scripts.UI
 
         [SerializeField]
         private UnityEngine.UI.Button[] _buildingButton;
+
+        [SerializeField]
+        private ConstructionPanelController _constructionPanelController;
         private UiController _uiController;
         private BaseController _baseController;
         private Dictionary<BasePanelState, GameObject> _statesToPanels;
@@ -59,6 +61,7 @@ namespace Assets.Scripts.UI
             }
             ActivatePanel(BasePanelState.Building);
             _baseController.StartBuilding(place, _currentConstruction);
+            _constructionPanelController.CheckWhatCanBeBuilt();
             _uiController.UpdateBaseData();
             _currentConstruction = null;
         }
@@ -86,6 +89,7 @@ namespace Assets.Scripts.UI
             };
 
             _availableBaseBuildings = availableBaseBuildings;
+            var buttonsToBuildings = new Dictionary<UnityEngine.UI.Button, Building>();
             var i = 0;
             foreach(var button in _buildingButton)
             {
@@ -93,7 +97,10 @@ namespace Assets.Scripts.UI
                 button.onClick.AddListener(() =>{
                     StartConstruction(building);
                 });
+                buttonsToBuildings.Add(button, building);
             }
+            _constructionPanelController.ButtonToBuilding = buttonsToBuildings;
+            _constructionPanelController.BaseState = baseController.BaseState;
         }
 
         private void StartConstruction(Building building)
