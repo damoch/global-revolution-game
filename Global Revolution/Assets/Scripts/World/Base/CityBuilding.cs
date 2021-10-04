@@ -1,8 +1,9 @@
-﻿using UnityEngine;
+﻿using Assets.Scripts.Data;
+using UnityEngine;
 
 namespace Assets.Scripts.World.Base
 {
-    public class CityBuilding : MonoBehaviour
+    public class CityBuilding : MonoBehaviour, IContractTarget
     {
         public CityBuildingType BuildingType;
         public Corporation Owner;

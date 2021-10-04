@@ -1,7 +1,4 @@
-﻿using System.Collections;
-using UnityEngine;
-
-namespace Assets.Scripts.World
+﻿namespace Assets.Scripts.World
 {
     public enum IndustryType
     {
