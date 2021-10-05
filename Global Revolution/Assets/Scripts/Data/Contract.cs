@@ -1,4 +1,5 @@
-﻿using System;
+﻿using Assets.Scripts.Data.Enum;
+using System;
 
 namespace Assets.Scripts.Data
 {
@@ -7,5 +8,6 @@ namespace Assets.Scripts.Data
         public IContractTarget Target { get; set; }
         public int Reward { get; set; }
         public DateTime Deadline { get; set; }
+        public ContractType ContractType { get; set; }
     }
 }

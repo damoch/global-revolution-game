@@ -1,5 +1,7 @@
-﻿using Assets.Scripts.Data;
+﻿using Assets.Scripts.Controllers;
+using Assets.Scripts.Data;
 using Assets.Scripts.Data.Factories;
+using Assets.Scripts.World.Base;
 using System;
 using System.Collections.Generic;
 using UnityEngine;
@@ -12,11 +14,13 @@ namespace Assets.Scripts.World
 
         public List<Corporation> HostileCorporations;
         public List<Corporation> AlliedCorporations;
+        public List<CityBuilding> ContractTargets;
         public List<Contract> Contracts;
         public GameClock Clock;
 
         public IndustryType[] IndustryTypes;
         private int _minuteOfContractGeneration;
+        private GameController _gameController;
 
         private void Start()
         {
@@ -30,7 +34,14 @@ namespace Assets.Scripts.World
             {
                 return;
             }
-            Contracts.Add(ContractFactory.CreateContractFor(this));
+            var contract = ContractFactory.CreateContractFor(this);
+            Contracts.Add(contract);
+            _gameController.LogGameEvent($"{Name} announced a contract to {contract.ContractType} {contract.Target}");
+        }
+
+        internal void InjectGameController(GameController gameController)
+        {
+            _gameController = gameController;
         }
     }
 }

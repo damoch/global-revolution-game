@@ -4,6 +4,8 @@ using Assets.Scripts.UI;
 using System.Text;
 using UnityEngine;
 using Assets.Scripts.Data;
+using System.Collections.Generic;
+using Assets.Scripts.Data.Factories;
 
 namespace Assets.Scripts.Controllers
 {
@@ -20,7 +22,9 @@ namespace Assets.Scripts.Controllers
 
         [SerializeField]
         private BaseController _baseController;
-        
+
+        public Corporation[] Corporations;
+        public ContractFactory ContractFactory;
         private Rules _rules;
         private Scenario _scenario;
         private GamePlayState _gamePlayState;
@@ -53,10 +57,17 @@ namespace Assets.Scripts.Controllers
         {
             _baseController.InjectController(this);
             _uiController.InjectController(this);
-            
+            ContractFactory.SetRules(_rules);
+
+
             foreach (var country in _countries)
             {
                 country.InjectGameCotroller(this);
+            }
+
+            foreach (var corporation in Corporations)
+            {
+                corporation.InjectGameController(this);
             }
         }
 

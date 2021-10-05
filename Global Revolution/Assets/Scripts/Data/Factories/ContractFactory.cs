@@ -1,17 +1,24 @@
 ﻿using Assets.Scripts.World;
 using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
+using UnityEngine;
 
 namespace Assets.Scripts.Data.Factories
 {
-    public static class ContractFactory
+    public class ContractFactory : MonoBehaviour
     {
+        private static Rules _rules;
         public static Contract CreateContractFor(Corporation corporation)
         {
-            throw new NotImplementedException();
+            var contract = new Contract();
+
+            //contract.Target
+
+            return contract;
+        }
+
+        internal void SetRules(Rules rules)
+        {
+            _rules = rules;
         }
     }
 }
