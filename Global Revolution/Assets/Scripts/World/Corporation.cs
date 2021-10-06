@@ -25,7 +25,7 @@ namespace Assets.Scripts.World
         private void Start()
         {
             _minuteOfContractGeneration = UnityEngine.Random.Range(1, 59);
-            Clock.OnMinutePassed += TimedEvent;
+            Contracts = new List<Contract>();
         }
 
         private void TimedEvent(DateTime currentTime)
@@ -35,13 +35,18 @@ namespace Assets.Scripts.World
                 return;
             }
             var contract = ContractFactory.CreateContractFor(this);
+            if(contract == null)
+            {
+                return;
+            }
             Contracts.Add(contract);
-            _gameController.LogGameEvent($"{Name} announced a contract to {contract.ContractType} {contract.Target}");
+            _gameController.LogGameEvent($"{Name} announced a contract to {contract.ContractType} {contract.Target.TargetName} that belongs to {contract.Target.TargetOwner.Name}");
         }
 
-        internal void InjectGameController(GameController gameController)
+        internal void InjectGameController(GameController gameController, GameClock gameClock)
         {
             _gameController = gameController;
+            gameClock.OnMinutePassed += TimedEvent;
         }
     }
 }

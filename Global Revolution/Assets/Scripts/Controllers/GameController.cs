@@ -57,7 +57,7 @@ namespace Assets.Scripts.Controllers
         {
             _baseController.InjectController(this);
             _uiController.InjectController(this);
-            ContractFactory.SetRules(_rules);
+            ContractFactory.SetRulesAndState(_rules, _worldState);
 
 
             foreach (var country in _countries)
@@ -67,7 +67,7 @@ namespace Assets.Scripts.Controllers
 
             foreach (var corporation in Corporations)
             {
-                corporation.InjectGameController(this);
+                corporation.InjectGameController(this, _worldState.GameClock);
             }
         }
 

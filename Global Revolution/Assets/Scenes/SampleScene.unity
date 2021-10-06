@@ -907,7 +907,8 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   Name: Epwares Energies
-  HostileCorporations: []
+  HostileCorporations:
+  - {fileID: 719305290}
   AlliedCorporations: []
   ContractTargets: []
   Clock: {fileID: 0}
@@ -1371,6 +1372,7 @@ MonoBehaviour:
   - {fileID: 2083343799}
   - {fileID: 237450873}
   - {fileID: 2053521114}
+  ContractFactory: {fileID: 917490004}
 --- !u!4 &616138199
 Transform:
   m_ObjectHideFlags: 0
@@ -1412,6 +1414,31 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   _gameClock: {fileID: 616138200}
+  CityBuildings:
+  - {fileID: 1361350794}
+  - {fileID: 1633919422}
+  - {fileID: 1128551803}
+  - {fileID: 1822356015}
+  Cities:
+  - {fileID: 1796924564}
+  - {fileID: 1693083685}
+  - {fileID: 1596004347}
+  - {fileID: 614780327}
+  - {fileID: 76503536}
+  - {fileID: 445826249}
+  - {fileID: 239293199}
+  - {fileID: 688547189}
+  - {fileID: 1122455515}
+  - {fileID: 846363730}
+  - {fileID: 225224962}
+  Countries:
+  - {fileID: 1607451650}
+  - {fileID: 372233026}
+  - {fileID: 1428694360}
+  - {fileID: 1463407302}
+  - {fileID: 1124267698}
+  - {fileID: 2033284539}
+  - {fileID: 333129518}
 --- !u!114 &616138202
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -2128,7 +2155,8 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   Name: Stardoo Dynamics
-  HostileCorporations: []
+  HostileCorporations:
+  - {fileID: 498404284}
   AlliedCorporations: []
   ContractTargets: []
   Clock: {fileID: 0}
@@ -2250,6 +2278,18 @@ Transform:
     type: 3}
   m_PrefabInstance: {fileID: 846363728}
   m_PrefabAsset: {fileID: 0}
+--- !u!114 &846363730 stripped
+MonoBehaviour:
+  m_CorrespondingSourceObject: {fileID: 2239226665615473804, guid: 1585210858d02964d9e9be3430f0ac7d,
+    type: 3}
+  m_PrefabInstance: {fileID: 846363728}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 1028ddb7e28dcee4ba7260a03d4867de, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1 &858625883
 GameObject:
   m_ObjectHideFlags: 0

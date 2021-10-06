@@ -8,5 +8,9 @@ namespace Assets.Scripts.World.Base
         public CityBuildingType BuildingType;
         public Corporation Owner;
         public bool IsDestroyed;
+
+        public string TargetName { get => BuildingType.ToString(); }
+
+        public Corporation TargetOwner => Owner;
     }
 }
