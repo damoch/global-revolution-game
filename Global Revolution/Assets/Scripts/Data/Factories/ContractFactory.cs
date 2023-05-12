@@ -24,6 +24,12 @@ namespace Assets.Scripts.Data.Factories
 
             contract.Target = target;
             contract.ContractType = ContractType.Destroy;
+            contract.Deadline = _worldState.GameClock.ClockValue.AddHours(UnityEngine.Random.Range(_rules.MinDeadlineForContractHours, _rules.MaxDeadlineForContractHours));
+            contract.Reward = UnityEngine.Random.Range(_rules.MinRewardForContract, _rules.MaxRewardForContract);
+            contract.Peanalty = UnityEngine.Random.Range(_rules.MinPeanaltyForContract, _rules.MaxPeanaltyForContract);
+
+            _worldState.Contracts.Add(contract);
+            
 
             return contract;
         }

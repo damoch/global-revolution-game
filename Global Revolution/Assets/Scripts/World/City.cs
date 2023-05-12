@@ -5,8 +5,7 @@ namespace Assets.Scripts.World
 {
     public class City : MonoBehaviour
     {
-        [SerializeField]
-        private string _name;
+        public string Name;
 
         [SerializeField]
         private bool _isCapitalCity;
@@ -15,10 +14,14 @@ namespace Assets.Scripts.World
 
         public CityBuilding[] CityBuildings;
 
-
         public void InjectCountry(Country country)
         {
             _country = country;
+
+            foreach (var cityBuilding in CityBuildings)
+            {
+                cityBuilding.City = this;
+            }
         }
     }
 }

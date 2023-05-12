@@ -28,25 +28,34 @@ namespace Assets.Scripts.World
             Contracts = new List<Contract>();
         }
 
-        private void TimedEvent(DateTime currentTime)
+        private void MinutePassed(DateTime currentTime)
         {
-            if(currentTime.Minute != _minuteOfContractGeneration)
+            if (currentTime.Minute != _minuteOfContractGeneration)
+            {
+                return;
+            }
+            CheckContractGenerator();
+        }
+
+        private void CheckContractGenerator()
+        {
+            if (Contracts.Count >= _gameController.Rules.MaxActiveContracts)
             {
                 return;
             }
             var contract = ContractFactory.CreateContractFor(this);
-            if(contract == null)
+            if (contract == null)
             {
                 return;
             }
             Contracts.Add(contract);
-            _gameController.LogGameEvent($"{Name} announced a contract to {contract.ContractType} {contract.Target.TargetName} that belongs to {contract.Target.TargetOwner.Name}");
+            _gameController.LogGameEvent($"{Name} announced a contract to {contract.ContractType} {contract.Target.TargetName} in {contract.Target.City.Name} that belongs to {contract.Target.TargetOwner.Name}. Reward: {contract.Reward} deadline: {contract.Deadline}");
         }
 
         internal void InjectGameController(GameController gameController, GameClock gameClock)
         {
             _gameController = gameController;
-            gameClock.OnMinutePassed += TimedEvent;
+            gameClock.OnMinutePassed += MinutePassed;
         }
     }
 }

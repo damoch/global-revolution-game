@@ -12,5 +12,7 @@ namespace Assets.Scripts.World.Base
         public string TargetName { get => BuildingType.ToString(); }
 
         public Corporation TargetOwner => Owner;
+
+        public City City { get; internal set; }
     }
 }

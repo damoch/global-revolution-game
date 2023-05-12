@@ -7,6 +7,7 @@ namespace Assets.Scripts.Data
     {
         public IContractTarget Target { get; set; }
         public int Reward { get; set; }
+        public int Peanalty { get; set; }
         public DateTime Deadline { get; set; }
         public ContractType ContractType { get; set; }
     }

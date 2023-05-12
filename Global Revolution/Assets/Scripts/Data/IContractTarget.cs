@@ -6,5 +6,7 @@ namespace Assets.Scripts.Data
     {
         string TargetName { get; }
         Corporation TargetOwner { get; }
+
+        City City { get; }
     }
 }

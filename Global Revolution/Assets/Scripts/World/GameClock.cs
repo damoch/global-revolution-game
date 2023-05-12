@@ -17,6 +17,8 @@ namespace Assets.Scripts.World
         public DateTime ClockValue { get; set; }
 
         public OnMinutePassed OnMinutePassed { get; set; }
+        public OnHourPassed OnHourPassed { get; private set; }
+
         private void Start()
         {
             _elapsedSeconds = 0;
@@ -46,6 +48,11 @@ namespace Assets.Scripts.World
         {
             ClockValue = ClockValue.AddMinutes(1);
             OnMinutePassed?.Invoke(ClockValue);
+
+            if(ClockValue.Minute == 0)
+            {
+                OnHourPassed?.Invoke(ClockValue);
+            }
         }
 
         public void SetClockRunning(bool isRunning)

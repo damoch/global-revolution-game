@@ -12,5 +12,15 @@ namespace Assets.Scripts.Data
 
         [SerializeField]
         private int _maxActiveContracts;
+
+        public int MinDeadlineForContractHours;
+        public int MaxDeadlineForContractHours;
+
+        public int MinRewardForContract;
+        public int MaxRewardForContract;
+
+        public int MinPeanaltyForContract;
+        public int MaxPeanaltyForContract;
+
     }
 }
